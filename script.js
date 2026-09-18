@@ -1,7 +1,17 @@
 console.log("¡JavaScript está funcionando! 🌻");
 
+
+// =====================================
+// DETECTAR CELULAR
+// =====================================
+
 const esMovil =
     window.matchMedia("(max-width: 768px)").matches;
+
+
+// =====================================
+// ESTRELLAS
+// =====================================
 
 const contenedorEstrellas =
     document.getElementById("estrellas");
@@ -9,42 +19,64 @@ const contenedorEstrellas =
 const cantidadEstrellas =
     esMovil ? 80 : 150;
 
-for (let i = 0; i < cantidadEstrellas; i++) {
 
-    const estrella = document.createElement("div");
+if (contenedorEstrellas) {
 
-    estrella.classList.add("estrella");
+    for (let i = 0; i < cantidadEstrellas; i++) {
 
-    // Posición aleatoria
-    estrella.style.left = Math.random() * 100 + "vw";
-    estrella.style.top = Math.random() * 100 + "vh";
+        const estrella =
+            document.createElement("div");
 
-    // Tamaño aleatorio
-    const tamaño = Math.random() * 3 + 1;
+        estrella.classList.add("estrella");
 
-    estrella.style.width = tamaño + "px";
-    estrella.style.height = tamaño + "px";
+        estrella.style.left =
+            Math.random() * 100 + "vw";
 
-    // Velocidad diferente para cada estrella
-    estrella.style.animationDuration =
-        (Math.random() * 3 + 1) + "s";
+        estrella.style.top =
+            Math.random() * 100 + "vh";
 
-    // Algunas estrellas ligeramente amarillas
-    if (Math.random() > 0.75) {
-        estrella.style.background = "#ffe45c";
-        estrella.style.boxShadow =
-            "0 0 8px #ffd700";
+
+        const tamaño =
+            Math.random() * 3 + 1;
+
+        estrella.style.width =
+            tamaño + "px";
+
+        estrella.style.height =
+            tamaño + "px";
+
+
+        estrella.style.animationDuration =
+            (Math.random() * 3 + 1) + "s";
+
+
+        if (Math.random() > 0.75) {
+
+            estrella.style.background =
+                "#ffe45c";
+
+            estrella.style.boxShadow =
+                "0 0 8px #ffd700";
+        }
+
+
+        contenedorEstrellas.appendChild(
+            estrella
+        );
     }
-
-    contenedorEstrellas.appendChild(estrella);
 }
 
+
 // =====================================
-// GALAXIA ESPIRAL
+// GALAXIA
 // =====================================
 
-const canvas = document.getElementById("galaxiaCanvas");
-const ctx = canvas.getContext("2d");
+const canvas =
+    document.getElementById("galaxiaCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
 
 let ancho;
 let alto;
@@ -53,8 +85,6 @@ let centroY;
 
 let particulas = [];
 
-const esMovil =
-    window.matchMedia("(max-width: 768px)").matches;
 
 const cantidadParticulas =
     esMovil ? 900 : 1800;
@@ -62,93 +92,148 @@ const cantidadParticulas =
 const brazos = 4;
 
 
-// Ajustar canvas al tamaño de pantalla
+// =====================================
+// AJUSTAR CANVAS
+// =====================================
+
 function ajustarCanvas() {
 
     const pixelRatio =
         Math.min(
-             window.devicePixelRatio || 1,
-             esMovil ? 1.25 : 1.75
+            window.devicePixelRatio || 1,
+            esMovil ? 1.25 : 1.75
         );
+
+
     ancho = window.innerWidth;
     alto = window.innerHeight;
 
-    canvas.width = ancho * pixelRatio;
-    canvas.height = alto * pixelRatio;
 
-    canvas.style.width = ancho + "px";
-    canvas.style.height = alto + "px";
+    canvas.width =
+        ancho * pixelRatio;
 
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    canvas.height =
+        alto * pixelRatio;
+
+
+    canvas.style.width =
+        ancho + "px";
+
+    canvas.style.height =
+        alto + "px";
+
+
+    ctx.setTransform(
+        pixelRatio,
+        0,
+        0,
+        pixelRatio,
+        0,
+        0
+    );
+
 
     centroX = ancho / 2;
     centroY = alto / 2;
 }
 
 
-// Crear las partículas
+// =====================================
+// CREAR GALAXIA
+// =====================================
+
 function crearGalaxia() {
 
     particulas = [];
 
+
     const radioMaximo =
         Math.min(ancho, alto) * 0.45;
 
-    for (let i = 0; i < cantidadParticulas; i++) {
+
+    for (
+        let i = 0;
+        i < cantidadParticulas;
+        i++
+    ) {
 
         const distancia =
-            Math.pow(Math.random(), 1.8) * radioMaximo;
+            Math.pow(
+                Math.random(),
+                1.8
+            ) * radioMaximo;
+
 
         const brazo =
-            Math.floor(Math.random() * brazos);
+            Math.floor(
+                Math.random() * brazos
+            );
+
 
         const anguloBrazo =
-            (brazo / brazos) * Math.PI * 2;
+            (brazo / brazos) *
+            Math.PI *
+            2;
+
 
         const giro =
             distancia * 0.035;
 
+
         const dispersion =
             (Math.random() - 0.5) *
-            (0.20 + distancia / radioMaximo) * 0.35;
+            (
+                0.20 +
+                (distancia / radioMaximo) *
+                0.35
+            );
+
 
         const angulo =
             anguloBrazo +
             giro +
             dispersion;
 
+
         const tamaño =
             Math.random() * 1.7 + 0.4;
 
+
         const brillo =
             Math.random() * 0.7 + 0.25;
+
 
         const altura =
             (Math.random() - 0.5) *
             distancia *
             0.22;
 
+
         particulas.push({
 
-            distancia: distancia,
+            distancia,
 
-            angulo: angulo,
+            angulo,
 
-            tamaño: tamaño,
+            tamaño,
 
-            brillo: brillo,
+            brillo,
 
-            altura: altura,
+            altura,
 
             velocidad:
                 0.00008 +
                 Math.random() * 0.00015
+
         });
     }
 }
 
 
-// Dibujar galaxia
+// =====================================
+// DIBUJAR GALAXIA
+// =====================================
+
 function dibujarGalaxia(tiempo) {
 
     ctx.clearRect(
@@ -158,9 +243,12 @@ function dibujarGalaxia(tiempo) {
         alto
     );
 
+
     ctx.save();
 
-    ctx.globalCompositeOperation = "lighter";
+    ctx.globalCompositeOperation =
+        "lighter";
+
 
     for (const particula of particulas) {
 
@@ -168,14 +256,17 @@ function dibujarGalaxia(tiempo) {
             tiempo *
             particula.velocidad;
 
+
         const angulo =
             particula.angulo +
             rotacion;
+
 
         const x =
             centroX +
             Math.cos(angulo) *
             particula.distancia;
+
 
         const y =
             centroY +
@@ -184,39 +275,41 @@ function dibujarGalaxia(tiempo) {
             0.42 +
             particula.altura;
 
+
         const distanciaNormalizada =
             particula.distancia /
-            (Math.min(ancho, alto) * 0.38);
+            (
+                Math.min(ancho, alto) *
+                0.45
+            );
+
 
         let rojo = 255;
         let verde;
         let azul;
 
-        // Centro blanco/dorado
+
         if (distanciaNormalizada < 0.18) {
 
             verde = 245;
             azul = 180;
 
-        }
-
-        // Zona amarilla
-        else if (distanciaNormalizada < 0.55) {
+        } else if (
+            distanciaNormalizada < 0.55
+        ) {
 
             verde = 215;
             azul = 70;
 
-        }
-
-        // Exterior dorado
-        else {
+        } else {
 
             verde = 175;
             azul = 20;
-
         }
 
+
         ctx.beginPath();
+
 
         ctx.fillStyle =
             `rgba(
@@ -226,18 +319,20 @@ function dibujarGalaxia(tiempo) {
                 ${particula.brillo}
             )`;
 
-if (esMovil) {
 
-    ctx.shadowBlur = 0;
+        if (esMovil) {
 
-} else {
+            ctx.shadowBlur = 0;
 
-    ctx.shadowBlur =
-        particula.tamaño * 2;
+        } else {
 
-    ctx.shadowColor =
-        "rgba(255, 210, 50, 0.55)";
-}
+            ctx.shadowBlur =
+                particula.tamaño * 2;
+
+            ctx.shadowColor =
+                "rgba(255, 210, 50, 0.55)";
+        }
+
 
         ctx.arc(
             x,
@@ -247,13 +342,16 @@ if (esMovil) {
             Math.PI * 2
         );
 
+
         ctx.fill();
     }
+
 
     ctx.restore();
 
 
     // Núcleo brillante
+
     const gradiente =
         ctx.createRadialGradient(
             centroX,
@@ -263,6 +361,7 @@ if (esMovil) {
             centroY,
             100
         );
+
 
     gradiente.addColorStop(
         0,
@@ -284,7 +383,10 @@ if (esMovil) {
         "rgba(255,180,0,0)"
     );
 
-    ctx.fillStyle = gradiente;
+
+    ctx.fillStyle =
+        gradiente;
+
 
     ctx.beginPath();
 
@@ -299,41 +401,55 @@ if (esMovil) {
     ctx.fill();
 
 
-    requestAnimationFrame(dibujarGalaxia);
+    requestAnimationFrame(
+        dibujarGalaxia
+    );
 }
 
 
-// Si cambia el tamaño de la ventana
+// =====================================
+// REDIMENSIONAR
+// =====================================
+
 window.addEventListener(
     "resize",
     () => {
 
         ajustarCanvas();
-        crearGalaxia();
 
+        crearGalaxia();
     }
 );
 
 
-// Iniciar
-
-
 // =====================================
-// FLORES Y MENSAJES
+// FLORES
 // =====================================
 
-const contenedorFlores = document.getElementById("flores");
-const mensajeFlor = document.getElementById("mensajeFlor");
+const contenedorFlores =
+    document.getElementById("flores");
 
-const efectoEspecial = document.getElementById("efectoEspecial");
-const florSecreta = document.getElementById("florSecreta");
-const fraseEspecial = document.getElementById("fraseEspecial");
+const mensajeFlor =
+    document.getElementById("mensajeFlor");
+
+const efectoEspecial =
+    document.getElementById("efectoEspecial");
+
+const florSecreta =
+    document.getElementById("florSecreta");
+
+const fraseEspecial =
+    document.getElementById("fraseEspecial");
+
 
 let temporizadorMensaje;
 let efectoEnCurso = false;
 
 
-// Flores con mensaje
+// =====================================
+// MENSAJES
+// =====================================
+
 const floresEspeciales = [
 
     {
@@ -341,7 +457,8 @@ const floresEspeciales = [
         y: 30,
         tipo: "girasol",
         escala: 1.1,
-        texto: "Te quelo mucho, bu 🌻"
+        texto:
+            "Te quelo mucho, bu 🌻"
     },
 
     {
@@ -349,7 +466,8 @@ const floresEspeciales = [
         y: 68,
         tipo: "margarita",
         escala: 0.9,
-        texto: "Me gusta mucho poder compartir ratitos contigo."
+        texto:
+            "Me gusta mucho poder compartir ratitos contigo."
     },
 
     {
@@ -357,7 +475,8 @@ const floresEspeciales = [
         y: 22,
         tipo: "girasol",
         escala: 1,
-        texto: "Solo quería hacerte una cosita bonita jsjs."
+        texto:
+            "Solo quería hacerte una cosita bonita jsjs."
     },
 
     {
@@ -365,7 +484,8 @@ const floresEspeciales = [
         y: 32,
         tipo: "margarita",
         escala: 0.85,
-        texto: "Espero que nunca dudes de que tienes mi compañía, bu."
+        texto:
+            "Espero que nunca dudes de que tienes mi compañía, bu."
     },
 
     {
@@ -373,7 +493,8 @@ const floresEspeciales = [
         y: 54,
         tipo: "girasol",
         escala: 1.15,
-        texto: "Me alegra mucho cuando apareces, aunque sea para decir una tontería jsjs."
+        texto:
+            "Me alegra mucho cuando apareces, aunque sea para decir una tontería jsjs."
     },
 
     {
@@ -381,7 +502,8 @@ const floresEspeciales = [
         y: 72,
         tipo: "margarita",
         escala: 0.95,
-        texto: "No sé cuánto mide una galaxia, pero aparentemente alcanza para guardar bastantes “te quelo”, bu 🌌"
+        texto:
+            "No sé cuánto mide una galaxia, pero aparentemente alcanza para guardar bastantes “te quelo”, bu 🌌"
     },
 
     {
@@ -389,7 +511,8 @@ const floresEspeciales = [
         y: 52,
         tipo: "girasol",
         escala: 1,
-        texto: "Esta galaxia es chiquita, pero el cariño va en serio 💛"
+        texto:
+            "Esta galaxia es chiquita, pero el cariño va en serio 💛"
     },
 
     {
@@ -397,15 +520,22 @@ const floresEspeciales = [
         y: 24,
         tipo: "margarita",
         escala: 0.85,
-        texto: "Gracias por todos esos pequeños ratitos que terminan alegrándome el día."
+        texto:
+            "Gracias por todos esos pequeños ratitos que terminan alegrándome el día."
     }
-    
 
 ];
 
+
+// =====================================
+// CREAR FLOR VISUAL
+// =====================================
+
 function crearVisualFlor(tipo) {
 
-    const visual = document.createElement("div");
+    const visual =
+        document.createElement("div");
+
 
     visual.classList.add(
         "flor-visual",
@@ -414,7 +544,9 @@ function crearVisualFlor(tipo) {
 
 
     const cantidadPetalos =
-        tipo === "girasol" ? 14 : 12;
+        tipo === "girasol"
+            ? 14
+            : 12;
 
 
     for (
@@ -426,11 +558,15 @@ function crearVisualFlor(tipo) {
         const petalo =
             document.createElement("span");
 
-        petalo.classList.add("petalo");
+
+        petalo.classList.add(
+            "petalo"
+        );
 
 
         const angulo =
-            (360 / cantidadPetalos) * i;
+            (360 / cantidadPetalos) *
+            i;
 
 
         petalo.style.transform =
@@ -441,36 +577,68 @@ function crearVisualFlor(tipo) {
             `;
 
 
-        visual.appendChild(petalo);
+        visual.appendChild(
+            petalo
+        );
     }
 
 
     const centro =
         document.createElement("span");
 
-    centro.classList.add("centro-flor");
 
-    visual.appendChild(centro);
+    centro.classList.add(
+        "centro-flor"
+    );
+
+
+    visual.appendChild(
+        centro
+    );
 
 
     return visual;
 }
 
+
+// =====================================
+// CORAZÓN
+// =====================================
+
 function crearCorazonParticulas() {
 
     if (!efectoEspecial) return;
 
+
     efectoEspecial.innerHTML = "";
 
-    const total = 140;
-    const escala = 10.5;
 
-    for (let i = 0; i < total; i++) {
+    const total =
+        esMovil ? 110 : 140;
 
-        const t = (i / total) * Math.PI * 2;
+    const escala =
+        esMovil ? 8.5 : 10.5;
+
+
+    for (
+        let i = 0;
+        i < total;
+        i++
+    ) {
+
+        const t =
+            (i / total) *
+            Math.PI *
+            2;
+
 
         const x =
-            16 * Math.pow(Math.sin(t), 3);
+            16 *
+            Math.pow(
+                Math.sin(t),
+                3
+            );
+
 
         const y =
             -(
@@ -480,13 +648,23 @@ function crearCorazonParticulas() {
                 Math.cos(4 * t)
             );
 
-        const particula =
-            document.createElement("span");
 
-        particula.classList.add("particula-corazon");
+        const particula =
+            document.createElement(
+                "span"
+            );
+
+
+        particula.classList.add(
+            "particula-corazon"
+        );
+
 
         const tamaño =
-            2 + Math.random() * 3.5;
+            2 +
+            Math.random() *
+            3.5;
+
 
         particula.style.width =
             tamaño + "px";
@@ -494,71 +672,113 @@ function crearCorazonParticulas() {
         particula.style.height =
             tamaño + "px";
 
+
         particula.style.setProperty(
             "--tx",
             `${x * escala}px`
         );
+
 
         particula.style.setProperty(
             "--ty",
             `${y * escala}px`
         );
 
+
         particula.style.animationDelay =
             `${Math.random() * 0.18}s`;
 
-        efectoEspecial.appendChild(particula);
+
+        efectoEspecial.appendChild(
+            particula
+        );
     }
 }
 
-function activarMomentoEspecial() {
+
+// =====================================
+// MOMENTO ESPECIAL
+// =====================================
+
+function activarMomentoEspecial(
+    evento
+) {
+
+    if (evento) {
+        evento.stopPropagation();
+    }
+
 
     if (efectoEnCurso) return;
 
+
     efectoEnCurso = true;
 
+
     crearCorazonParticulas();
+
 
     mostrarMensaje(
         "Encontraste la flor secreta 🌻"
     );
+
 
     if (fraseEspecial) {
 
         fraseEspecial.textContent =
             "Si algún día necesitas un rinconcito tranquilo, sabes que mi puerta siempre estará abierta para ti 🤍";
 
-        fraseEspecial.classList.add("mostrar");
+
+        fraseEspecial.classList.add(
+            "mostrar"
+        );
     }
+
 
     setTimeout(() => {
 
         if (fraseEspecial) {
-            fraseEspecial.classList.remove("mostrar");
+
+            fraseEspecial.classList.remove(
+                "mostrar"
+            );
         }
 
+
         if (efectoEspecial) {
-            efectoEspecial.innerHTML = "";
+
+            efectoEspecial.innerHTML =
+                "";
         }
+
 
         efectoEnCurso = false;
 
     }, 3200);
 }
 
-// Crear flores
+
+// =====================================
+// CREAR FLORES
+// =====================================
+
 function crearFlores() {
+
+    if (!contenedorFlores) return;
+
 
     contenedorFlores.innerHTML = "";
 
 
-    // FLORES CON MENSAJE
+    // Flores con mensajes
 
     floresEspeciales.forEach(
         (florData) => {
 
             const flor =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
             flor.classList.add(
@@ -572,7 +792,6 @@ function crearFlores() {
 
             flor.style.top =
                 florData.y + "%";
-
 
             flor.style.scale =
                 florData.escala;
@@ -597,7 +816,9 @@ function crearFlores() {
                 ) + "s";
 
 
-            flor.appendChild(visual);
+            flor.appendChild(
+                visual
+            );
 
 
             flor.addEventListener(
@@ -609,31 +830,33 @@ function crearFlores() {
                     mostrarMensaje(
                         florData.texto
                     );
-
                 }
             );
 
 
-            contenedorFlores
-                .appendChild(flor);
-
+            contenedorFlores.appendChild(
+                flor
+            );
         }
     );
 
 
-    // FLORES DECORATIVAS
+    // Flores decorativas
 
     const cantidadDecorativas =
-    esMovil ? 6 : 10;
+        esMovil ? 6 : 10;
 
-for (
-    let i = 0;
-    i < cantidadDecorativas;
-    i++
-) {
+
+    for (
+        let i = 0;
+        i < cantidadDecorativas;
+        i++
+    ) {
 
         const flor =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         flor.classList.add(
@@ -643,12 +866,17 @@ for (
 
 
         flor.style.left =
-            (8 + Math.random() * 84)
-            + "%";
+            (
+                8 +
+                Math.random() * 84
+            ) + "%";
+
 
         flor.style.top =
-            (10 + Math.random() * 78)
-            + "%";
+            (
+                10 +
+                Math.random() * 78
+            ) + "%";
 
 
         const tipo =
@@ -658,11 +886,15 @@ for (
 
 
         const visual =
-            crearVisualFlor(tipo);
+            crearVisualFlor(
+                tipo
+            );
 
 
         const tamaño =
-            0.45 + Math.random() * 0.35;
+            0.45 +
+            Math.random() *
+            0.35;
 
 
         visual.style.transform =
@@ -676,111 +908,125 @@ for (
             ) + "s";
 
 
-        flor.appendChild(visual);
+        flor.appendChild(
+            visual
+        );
 
-        contenedorFlores
-            .appendChild(flor);
+
+        contenedorFlores.appendChild(
+            flor
+        );
     }
 }
 
 
-// Mostrar mensaje
+// =====================================
+// MOSTRAR MENSAJE
+// =====================================
+
 function mostrarMensaje(texto) {
 
-    mensajeFlor.textContent = texto;
-    mensajeFlor.classList.add("mostrar");
+    if (!mensajeFlor) return;
 
-    clearTimeout(temporizadorMensaje);
 
-    temporizadorMensaje = setTimeout(() => {
-        mensajeFlor.classList.remove("mostrar");
-    }, 3200);
+    mensajeFlor.textContent =
+        texto;
+
+
+    mensajeFlor.classList.add(
+        "mostrar"
+    );
+
+
+    clearTimeout(
+        temporizadorMensaje
+    );
+
+
+    temporizadorMensaje =
+        setTimeout(() => {
+
+            mensajeFlor.classList.remove(
+                "mostrar"
+            );
+
+        }, 3200);
 }
 
 
-// Ocultar si se hace clic fuera
-document.addEventListener("click", (e) => {
-    if (!e.target.closest(".flor-interactiva")) {
-        mensajeFlor.classList.remove("mostrar");
-    }
-});
-
 // =====================================
-// INICIAR TODO
+// CERRAR MENSAJES
 // =====================================
 
-function iniciarUniverso() {
+document.addEventListener(
+    "click",
+    (evento) => {
 
-    console.log("🌌 Iniciando galaxia...");
+        if (
+            mensajeFlor &&
+            !evento.target.closest(
+                ".flor-interactiva"
+            ) &&
+            !evento.target.closest(
+                ".flor-secreta"
+            )
+        ) {
 
-    ajustarCanvas();
-    crearGalaxia();
-
-    requestAnimationFrame(dibujarGalaxia);
-
-    if (contenedorFlores && mensajeFlor) {
-
-        console.log("🌻 Creando flores...");
-
-        crearFlores();
-
-    } else {
-
-        console.error(
-            "❌ No encontré #flores o #mensajeFlor"
-        );
+            mensajeFlor.classList.remove(
+                "mostrar"
+            );
+        }
     }
+);
 
-        if (florSecreta) {
-
-        florSecreta.innerHTML = "";
-
-        const visualSecreto =
-            crearVisualFlor("girasol");
-
-        florSecreta.appendChild(
-            visualSecreto
-        );
-
-        florSecreta.addEventListener(
-            "click",
-            activarMomentoEspecial
-        );
-    }
-}
 
 // =====================================
-// MÚSICA - SPOTIFY
+// SPOTIFY
 // =====================================
 
 const botonMusica =
-    document.getElementById("botonMusica");
+    document.getElementById(
+        "botonMusica"
+    );
 
 const spotifyPlayer =
-    document.getElementById("spotifyPlayer");
+    document.getElementById(
+        "spotifyPlayer"
+    );
+
 
 let spotifyVisible = false;
 
 
-if (botonMusica && spotifyPlayer) {
+if (
+    botonMusica &&
+    spotifyPlayer
+) {
 
     botonMusica.addEventListener(
         "click",
         () => {
 
-            spotifyVisible = !spotifyVisible;
+            spotifyVisible =
+                !spotifyVisible;
 
 
             if (spotifyVisible) {
 
-                spotifyPlayer.classList.remove("oculto");
+                spotifyPlayer.classList.remove(
+                    "oculto"
+                );
+
 
                 botonMusica.textContent =
                     "♫ Serendipity";
 
             } else {
 
-                spotifyPlayer.classList.add("oculto");
+                spotifyPlayer.classList.add(
+                    "oculto"
+                );
+
 
                 botonMusica.textContent =
                     "▶ Escuchar Serendipity";
@@ -789,16 +1035,88 @@ if (botonMusica && spotifyPlayer) {
     );
 }
 
+
+// =====================================
+// PISTA INICIAL
+// =====================================
+
 const pistaInicial =
-    document.getElementById("pistaInicial");
+    document.getElementById(
+        "pistaInicial"
+    );
+
 
 if (pistaInicial) {
 
     setTimeout(() => {
 
-        pistaInicial.classList.add("ocultar");
+        pistaInicial.classList.add(
+            "ocultar"
+        );
 
     }, 5000);
 }
+
+
+// =====================================
+// INICIAR UNIVERSO
+// =====================================
+
+function iniciarUniverso() {
+
+    console.log(
+        "🌌 Iniciando galaxia..."
+    );
+
+
+    ajustarCanvas();
+
+    crearGalaxia();
+
+
+    requestAnimationFrame(
+        dibujarGalaxia
+    );
+
+
+    if (
+        contenedorFlores &&
+        mensajeFlor
+    ) {
+
+        crearFlores();
+
+    } else {
+
+        console.error(
+            "❌ No encontré los elementos de las flores."
+        );
+    }
+
+
+    if (florSecreta) {
+
+        florSecreta.innerHTML =
+            "";
+
+
+        const visualSecreto =
+            crearVisualFlor(
+                "girasol"
+            );
+
+
+        florSecreta.appendChild(
+            visualSecreto
+        );
+
+
+        florSecreta.addEventListener(
+            "click",
+            activarMomentoEspecial
+        );
+    }
+}
+
 
 iniciarUniverso();
