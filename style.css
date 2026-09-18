@@ -815,3 +815,64 @@ body,
 .universo {
     min-height: 100dvh;
 }
+
+/* =========================
+   REPRODUCTOR DE SPOTIFY
+========================= */
+
+.spotify-player {
+    position: fixed;
+
+    top: 78px;
+    right: 18px;
+
+    width: 300px;
+    max-width: calc(100vw - 36px);
+
+    z-index: 31;
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+.spotify-player.oculto {
+    opacity: 0;
+
+    transform: translateY(-12px);
+
+    pointer-events: none;
+}
+
+.spotify-player iframe {
+    display: block;
+
+    width: 100%;
+    height: 152px;
+
+    border: none;
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 15px rgba(255, 210, 80, 0.18);
+}
+
+
+/* CELULAR */
+
+@media (max-width: 768px) {
+
+    .spotify-player {
+        top: 65px;
+        right: 10px;
+
+        width: 260px;
+
+        max-width: calc(100vw - 20px);
+    }
+
+}
