@@ -1,52 +1,149 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Para Dany 🌻</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-<div id="estrellas"></div>
+    <!-- =========================
+         ESTRELLAS DEL FONDO
+    ========================== -->
 
-<main class="universo">
+    <div id="estrellas"></div>
 
-    <canvas id="galaxiaCanvas"></canvas>
 
-    <div id="efectoEspecial"></div>
+    <!-- =========================
+         UNIVERSO
+    ========================== -->
 
-    <div id="flores"></div>
+    <main class="universo">
 
-    <button id="florSecreta" class="flor-secreta" aria-label="Flor secreta para Dany"></button>
 
-    <div class="mensaje-central">
-        <h1>Para Dany 🌻</h1>
-        <p>Una pequeña galaxia para una pequeña bu</p>
-    </div>
+        <!-- GALAXIA -->
 
-    <div id="fraseEspecial" class="frase-especial"></div>
+        <canvas id="galaxiaCanvas"></canvas>
 
-    <div id="mensajeFlor" class="mensaje-flor"></div>
 
-    <button id="botonMusica" class="boton-musica">
-    ▶ Escuchar Serendipity
-</button>
+        <!-- EFECTO DEL CORAZÓN -->
 
-<audio id="musicaFondo" loop>
-    <source src="musica/serendipity.mp3" type="audio/mpeg">
-</audio>
+        <div id="efectoEspecial"></div>
 
-<div id="pistaInicial" class="pista-inicial">
-    Toca las flores 🌻
-</div>
 
-</main>
+        <!-- FLORES -->
 
-<script src="script.js"></script>
+        <div id="flores"></div>
+
+
+        <!-- FLOR SECRETA -->
+
+        <button
+            id="florSecreta"
+            class="flor-secreta"
+            aria-label="Flor secreta para Dany">
+        </button>
+
+
+        <!-- =========================
+             MENSAJE CENTRAL
+        ========================== -->
+
+        <div class="mensaje-central">
+
+            <h1>
+                Para Dany 🌻
+            </h1>
+
+            <p>
+                Una pequeña galaxia para una pequeña bu
+            </p>
+
+        </div>
+
+
+        <!-- MENSAJE ESPECIAL -->
+
+        <div
+            id="fraseEspecial"
+            class="frase-especial">
+        </div>
+
+
+        <!-- MENSAJES DE LAS FLORES -->
+
+        <div
+            id="mensajeFlor"
+            class="mensaje-flor">
+        </div>
+
+
+        <!-- =========================
+             MÚSICA
+        ========================== -->
+
+        <button
+            id="botonMusica"
+            class="boton-musica">
+
+            ▶ Escuchar Serendipity
+
+        </button>
+
+
+        <!-- REPRODUCTOR DE SPOTIFY -->
+
+        <div
+            id="spotifyPlayer"
+            class="spotify-player oculto">
+
+            <iframe
+                data-testid="embed-iframe"
+                style="border-radius: 12px;"
+                src="https://open.spotify.com/embed/track/61RvEx7GLYRHQhG7ldjJo1?utm_source=generator&si=e86ad79a0a134885"
+                width="100%"
+                height="152"
+                frameborder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+
+        <!-- =========================
+             PISTA INICIAL
+        ========================== -->
+
+        <div
+            id="pistaInicial"
+            class="pista-inicial">
+
+            Toca las flores 🌻
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
