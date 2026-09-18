@@ -2,7 +2,8 @@ console.log("¡JavaScript está funcionando! 🌻");
 
 const contenedorEstrellas = document.getElementById("estrellas");
 
-const cantidadEstrellas = 180;
+const cantidadEstrellas =
+    esMovil ? 80 : 150;
 
 for (let i = 0; i < cantidadEstrellas; i++) {
 
@@ -48,15 +49,23 @@ let centroY;
 
 let particulas = [];
 
-const cantidadParticulas = 2200;
+const esMovil =
+    window.matchMedia("(max-width: 768px)").matches;
+
+const cantidadParticulas =
+    esMovil ? 900 : 1800;
+
 const brazos = 4;
 
 
 // Ajustar canvas al tamaño de pantalla
 function ajustarCanvas() {
 
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-
+    const pixelRatio =
+        Math.min(
+             window.devicePixelRatio || 1,
+             esMovil ? 1.25 : 1.75
+        );
     ancho = window.innerWidth;
     alto = window.innerHeight;
 
@@ -213,11 +222,18 @@ function dibujarGalaxia(tiempo) {
                 ${particula.brillo}
             )`;
 
-        ctx.shadowBlur =
-            particula.tamaño * 5;
+if (esMovil) {
 
-        ctx.shadowColor =
-            `rgba(255, 210, 50, 0.8)`;
+    ctx.shadowBlur = 0;
+
+} else {
+
+    ctx.shadowBlur =
+        particula.tamaño * 2;
+
+    ctx.shadowColor =
+        "rgba(255, 210, 50, 0.55)";
+}
 
         ctx.arc(
             x,
@@ -603,7 +619,14 @@ function crearFlores() {
 
     // FLORES DECORATIVAS
 
-    for (let i = 0; i < 12; i++) {
+    const cantidadDecorativas =
+    esMovil ? 6 : 10;
+
+for (
+    let i = 0;
+    i < cantidadDecorativas;
+    i++
+) {
 
         const flor =
             document.createElement("div");
