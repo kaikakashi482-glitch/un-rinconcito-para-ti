@@ -749,3 +749,69 @@ body {
     opacity: 0;
     pointer-events: none;
 }
+
+/* FLORES MÁS LUMINOSAS EN CELULAR */
+
+.flor-visual {
+    filter:
+        brightness(1.35)
+        saturate(1.15)
+        drop-shadow(0 0 7px rgba(255, 210, 70, 0.45));
+}
+
+.flor-decorativa {
+    opacity: 0.78;
+    transform:
+        translate(-50%, -50%)
+        scale(0.52);
+}
+
+
+/* FLORES INTERACTIVAS */
+
+.flor-interactiva {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* FLOR SECRETA */
+
+.flor-secreta {
+    width: 48px;
+    height: 48px;
+    top: 65%;
+}
+
+
+/* BOTÓN DE MÚSICA */
+
+.boton-musica {
+    top: 12px;
+    right: 12px;
+
+    padding: 8px 12px;
+
+    font-size: 0.72rem;
+
+    border-radius: 15px;
+}
+
+
+/* TEXTO CENTRAL */
+
+.mensaje-central h1 {
+    font-size: 2.15rem;
+}
+
+.mensaje-central p {
+    font-size: 0.93rem;
+}
+
+
+/* MEJOR ALTURA REAL EN CELULAR */
+
+body,
+.universo {
+    min-height: 100dvh;
+}
