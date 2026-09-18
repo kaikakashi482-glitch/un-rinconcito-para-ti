@@ -722,39 +722,41 @@ function iniciarUniverso() {
     }
 }
 
-const musicaFondo =
-    document.getElementById("musicaFondo");
+// =====================================
+// MÚSICA - SPOTIFY
+// =====================================
 
 const botonMusica =
     document.getElementById("botonMusica");
 
-let musicaReproduciendo = false;
+const spotifyPlayer =
+    document.getElementById("spotifyPlayer");
 
-if (botonMusica && musicaFondo) {
+let spotifyVisible = false;
 
-    musicaFondo.volume = 0.35;
+
+if (botonMusica && spotifyPlayer) {
 
     botonMusica.addEventListener(
         "click",
         () => {
 
-            if (!musicaReproduciendo) {
+            spotifyVisible = !spotifyVisible;
 
-                musicaFondo.play();
+
+            if (spotifyVisible) {
+
+                spotifyPlayer.classList.remove("oculto");
 
                 botonMusica.textContent =
-                    "❚❚ Pausar música";
-
-                musicaReproduciendo = true;
+                    "♫ Serendipity";
 
             } else {
 
-                musicaFondo.pause();
+                spotifyPlayer.classList.add("oculto");
 
                 botonMusica.textContent =
                     "▶ Escuchar Serendipity";
-
-                musicaReproduciendo = false;
             }
         }
     );
