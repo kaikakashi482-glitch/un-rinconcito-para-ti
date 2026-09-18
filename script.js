@@ -1,6 +1,10 @@
 console.log("¡JavaScript está funcionando! 🌻");
 
-const contenedorEstrellas = document.getElementById("estrellas");
+const esMovil =
+    window.matchMedia("(max-width: 768px)").matches;
+
+const contenedorEstrellas =
+    document.getElementById("estrellas");
 
 const cantidadEstrellas =
     esMovil ? 80 : 150;
